@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anand Mathew</title>
+    <meta name="description" content="Anand Website" />
+    <meta name="keywords" content="waterloo, portfolio,personal,webpage, web developer, coop, anand, mathew, computers, fullstack, frontend, backend" />
+    <meta name="author" content="Anand Mathew" />
+    <link rel="stylesheet" type="text/css" href="default.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <script src="js/modernizr.custom.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery.tubular.1.0.js"></script>
+    <script src='http://cdn.html5quintus.com/v0.2.0/quintus-all.js'></script>
+    <script src='platformer.js'></script>
+    
+    
+
+
+</head>
+<body>
+<div id = "wrapper"> <div class="container demo-1">
+    <!-- Codrops top bar -->
+    <div class="codrops-top clearfix">
+        <a href="http://tympanus.net/Tutorials/AppShowcase/"><strong>&laquo; Previous Demo: </strong>App Showcase</a>
+        <span class="right"><a href="http://tympanus.net/codrops/?p=14753"><strong>Back to the Codrops Article</strong></a></span>
+    </div><!--/ Codrops top bar -->
+    <header class="clearfix">
+        <h1>Anand Mathew <span>Full-stack developer</span></h1>
+        <nav class="codrops-demos">
+            <a class="current-demo" href="index.html">About Me</a>
+            <a href="http://anandmathew.com/anandmathewresume.pdf">Resume</a>
+            <a href="projects.html" class = "transition">My Projects</a>
+        </nav>
+    </header>
+     <div class = "main clearfix" id = "game"><h2>Attack On Titan Conquest</h2><br>
+     <p>A Mario style platform game that features Attack On Titan. It was bult using javascript and the Quintus Game engine. In the future, I hope to introduce multiplayer functionality and real time event processing using Sockets.io</p>
+     
+     </div>
+    <div class = "main clearfix"><h2>RaptorFriendsTweet</h2><br>
+        <p>A web app that posts five Toronto Raptor related tweets posted by individuals within a mile from my address geocode. I primarily used PHP and Javascript to build this application along with the Twitter Search API.</p>
+        
+        <div class="column3">
+
+            <div class = "box">
+            </div>
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+            
+            <script> $( "<img>" ).attr( "src", "http://www.userlogos.org/files/logos/jumpordie/twitter_new_bird-iphone.png" );
+            $( "<img>" ).attr( "class", "icons" );
+            </script>
+        </div>
+    </div>
+
+    <script src="js/jquery.dlmenu.js"></script>
+</div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("body").css("display", "none");
+
+            $("body").fadeIn(2000);
+
+            $("a.transition").click(function(event){
+                event.preventDefault();
+                linkLocation = this.href;
+                $("body").fadeOut(1000, redirectPage);
+            });
+
+            function redirectPage() {
+                window.location = linkLocation;
+            }
+        });
+    </script></div>
+    
+     <script>
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        if (!isMobile()) {
+
+         var canv = document.createElement('canvas');
+	canv.id = 'myGame';
+	canv.width = '700';
+	canv.height = '700';
+
+	document.body.appendChild(canv); 
+	document.getElementById('game').appendChild(canv); 
+        }
+        
+        if (isMobile()) {
+
+        var canvMobile = document.createElement('img');
+	canvMobile.id = 'myGameMobile';
+	canvMobile.width = '10';
+	canvMobile.height = '10';
+
+	document.body.appendChild(canvMobile); 
+	document.getElementById('game').appendChild(canvMobile); 
+        }
+    </script>
+
+	<script type = "text/javascript">
+                var request = {
+                    "topic" : $("#topic").val(),
+                    "latitude": $("#latitude").val(),
+                    "longitude": $("#longitude").val(),
+                    "radius": $("radius").val()
+                }
+
+
+                $(document).ready(function() {
+                    $.getJSON( "http://anandmathew.com/twitsearch.php", request, function(data) {
+                    	console.log($("#topic").val());
+                        console.log(data);
+                        $.each( data.statuses, function( i, statuses ) {
+                            $(".box").append("<img>" + "<li>" + data.statuses[i].user.name + ": " + data.statuses[i].text + "</li>"+ "<br>");
+                            if (i == 4) {
+                                return false;
+                            }
+
+                        });
+                    });
+
+                });
+            </script>
+
+
+
+
+
+</body>
+</html>
